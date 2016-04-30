@@ -1,0 +1,34 @@
+<script type="text/javascript">
+
+/*	var json = 
+				{
+					"firstname" : "Sulaiman",
+					"lastName" : "Aloraini",
+					"Course" : "SE371"
+				}*/
+//document.write(json.Course + " " + json.firstname + " " + json.lastName);
+
+
+	var employees = {
+						"employees" : 
+						[
+							{"Name" : "Sulaiman", "lastName" : "Aloraini"},
+							{"Name" : "Anis", "lastName" : "Koubaa"},
+							{"Name" : "Ali", "lastName" : "Aloraini"}
+						]
+
+					}
+	document.write(employees.employees[0].lastName + " " + employees.employees[1].lastName+ " " + employees.employees[2].lastName);
+	document.write("<br> number of the employees in the json are : "+employees.employees.length);
+
+	var output = "<br><br><table>";
+	output += "<tr> <td>firstname<td> <td>lastName</td></tr>";
+	for (var i = 0; i < employees.employees.length; i++) {
+		var line = "<tr>";
+		line += "<td>"+employees.employees[i].Name+"</td> <td>"+employees.employees[i].lastName+"</td>";
+		line += "<tr>";
+		output += line;
+	}
+	output += "</table>";
+	document.write(output);
+</script>

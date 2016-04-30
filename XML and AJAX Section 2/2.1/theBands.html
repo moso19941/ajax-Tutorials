@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>The Bands</title>
+    <script language="javascript" type="text/javascript">
+        var xmlhttp;
+        
+        function getBands()
+        {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = loadData;
+            xmlhttp.open("GET", "bands.php", true);
+            xmlhttp.send();
+        }
+        
+        function loadData()
+        {
+            /*
+                the idea is go to xml and take the value bands then look for band then take the firstChild (The text)
+    
+            */
+            if(xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var bandXML = xmlhttp.responseXML.documentElement.getElementsByTagName("bands");
+               // console.log(bandXML);
+                //create loop to loop through bands xml
+                var output = "<table>";
+
+                    for (var i = 0; i < bandXML.length; i++) 
+                    {
+
+                        var line = "<tr>";
+                        var bandElement = bandXML[i].getElementsByTagName("band");
+                        var bandName = bandElement[0].firstChild.nodeValue;
+
+                        var SongElement = bandXML[i].getElementsByTagName("song");
+                        var songName = bandElement[0].firstChild.nodeValue;
+
+                        line += "<td>" + bandName + "</td><td>" + songName +"</td>";
+                        line += "<tr>";
+                        output += line;
+                    }
+
+                output += "</table>";
+                document.getElementById("result").innerHTML = output;
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+    <input type="button" value="Get Bands!" onclick="getBands()"/>
+</body>
+</html>
